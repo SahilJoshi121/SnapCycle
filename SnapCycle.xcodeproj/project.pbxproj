@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BA7CC5A02DAB07D400D06541 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = BA7CC59F2DAB07D400D06541 /* GoogleGenerativeAI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		BA7CC5702DAB06DE00D06541 /* SnapCycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapCycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA7CC5A02DAB07D400D06541 /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = SnapCycle;
 			packageProductDependencies = (
+				BA7CC59F2DAB07D400D06541 /* GoogleGenerativeAI */,
 			);
 			productName = SnapCycle;
 			productReference = BA7CC5702DAB06DE00D06541 /* SnapCycle.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = BA7CC5672DAB06DE00D06541;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BA7CC59E2DAB07D400D06541 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BA7CC5712DAB06DE00D06541 /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BA7CC59E2DAB07D400D06541 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google-gemini/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BA7CC59F2DAB07D400D06541 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA7CC59E2DAB07D400D06541 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BA7CC5682DAB06DE00D06541 /* Project object */;
 }
