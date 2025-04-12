@@ -35,9 +35,15 @@ class GenAI: ObservableObject {
                     }
                 }
                 
-                parts.append(.text("hi"))
+                parts.append(.text("What's in these images?"))
                 
-                let result = try await model.generateContent("")
+                let modelContent = try await ModelContent(parts: parts)
+                
+                var modelContentArray: [ModelContent] = []
+                
+                modelContentArray.append(modelContent)
+                
+                let result = try await model.generateContent(modelContentArray)
                 isLoading = false
                 response = result.text ?? "ERROR"
             } catch {
