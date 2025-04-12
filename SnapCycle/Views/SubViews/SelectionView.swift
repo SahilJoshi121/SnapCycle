@@ -15,9 +15,9 @@ struct PhotoSelectionView: View {
     var body: some View {
         VStack {
             HStack {
-                
                 Button {
                     mainViewModel.selection.removeAll()
+                    mainViewModel.selectedPhotos = true
                 } label: {
                     Image(systemName: "x.circle.fill")
                         .foregroundColor(Color.green)
@@ -49,9 +49,19 @@ struct PhotoSelectionView: View {
                 }
 
             }
-            PhotoGridView(mainViewModel: mainViewModel)
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.green.opacity(0.1))
+                .padding(20)
+                .frame(minHeight: 175, maxHeight: .infinity)
+                .overlay(
+                    PhotoGridView(mainViewModel: mainViewModel)
+                )
+                
             
         }.onChange(of: mainViewModel.selection) {_, newValue in
+            
+            mainViewModel.selectedPhotos = true
+            
             Task {
                 mainViewModel.selectedImages.removeAll()
                 for photosPickerItem in mainViewModel.selection {

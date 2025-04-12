@@ -12,6 +12,19 @@ struct PhotoGridView: View {
     @ObservedObject var mainViewModel: MainViewModel
     
     var body: some View {
+        if mainViewModel.selectedPhotos == false {
+            Text("Select some photos to view them here!")
+                .foregroundColor(Color.green)
+                .fontWeight(.bold)
+                .padding(.all, 10.0)
+                .cornerRadius(8)
+                .padding(.leading, 10)
+                .italic()
+        }
+        
+        Spacer()
+        
+        
         ScrollView {
             LazyHGrid(rows: [GridItem(.adaptive(minimum: 100))], alignment: .center, spacing: 10) {
                 ForEach(mainViewModel.selectedImages, id: \.self) { image in
@@ -20,6 +33,7 @@ struct PhotoGridView: View {
                         Color.green
                             .frame(width: 100, height: 100)
                             .cornerRadius(8)
+                            .opacity(0.8)
                         
                         Image(uiImage: image)
                             .resizable()
@@ -30,9 +44,10 @@ struct PhotoGridView: View {
                     }
                     
                 }
-            }
-            .padding()
+            }.frame(alignment: .center)
         }
+        
+        Spacer()
     }
 }
 

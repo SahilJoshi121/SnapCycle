@@ -11,7 +11,9 @@ import SwiftUI
 struct SnapCycleApp: App {
     var body: some Scene {
         WindowGroup {
-            OpenView()
+            NavigationView {
+                OpenView()
+            }
         }
     }
 }

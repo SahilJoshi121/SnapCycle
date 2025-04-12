@@ -12,4 +12,6 @@ import PhotosUI
 class MainViewModel: ObservableObject {
     @Published var selection: [PhotosPickerItem] = []
     @Published var selectedImages: [UIImage] = []
+    @Published var selectedPhotos: Bool = false
+    
 }
