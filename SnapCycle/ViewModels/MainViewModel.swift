@@ -13,5 +13,5 @@ class MainViewModel: ObservableObject {
     @Published var selection: [PhotosPickerItem] = []
     @Published var selectedImages: [UIImage] = []
     @Published var selectedPhotos: Bool = false
-    
+    @Published var isAnalyzing: Bool = false
 }

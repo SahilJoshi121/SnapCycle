@@ -21,7 +21,9 @@ struct MainView: View {
                 .font(.system(size: 40, weight: .bold, design: .default))
                 .foregroundColor(Color(red: 0.2, green: 0.5, blue: 0.2))
             
-            PhotoSelectionView(mainViewModel: mainViewModel)
+            PhotoSelectionView(mainViewModel: mainViewModel, genAIModel: GenAI(mainViewModel: mainViewModel))
+            
+            AIView(mainViewModel: mainViewModel, genAIModel: GenAI(mainViewModel: mainViewModel))
             
         }
     }

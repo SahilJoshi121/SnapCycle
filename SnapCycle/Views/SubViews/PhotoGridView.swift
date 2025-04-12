@@ -52,5 +52,7 @@ struct PhotoGridView: View {
 }
 
 #Preview {
-    PhotoSelectionView(mainViewModel: MainViewModel())
+    let mainViewModel = MainViewModel()
+    let genAIModel = GenAI(mainViewModel: mainViewModel)
+    PhotoSelectionView(mainViewModel: mainViewModel, genAIModel: genAIModel)
 }

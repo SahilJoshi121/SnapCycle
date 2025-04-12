@@ -11,6 +11,7 @@ import PhotosUI
 struct PhotoSelectionView: View {
     
     @ObservedObject var mainViewModel: MainViewModel
+    @ObservedObject var genAIModel: GenAI
     
     var body: some View {
         VStack {
@@ -38,7 +39,8 @@ struct PhotoSelectionView: View {
                 }
                 
                 Button {
-                    
+                    mainViewModel.isAnalyzing = true
+                    genAIModel.generateRespose(input: mainViewModel.selectedImages)
                 } label: {
                     Text("Analyze")
                         .foregroundColor(Color.green)
@@ -78,5 +80,7 @@ struct PhotoSelectionView: View {
 }
 
 #Preview {
-    PhotoSelectionView(mainViewModel: MainViewModel())
+    let mainViewModel = MainViewModel()
+    let genAIModel = GenAI(mainViewModel: mainViewModel)
+    PhotoSelectionView(mainViewModel: mainViewModel, genAIModel: genAIModel)
 }
