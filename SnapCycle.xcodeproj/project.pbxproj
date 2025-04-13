@@ -8,21 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		BA7CC5A02DAB07D400D06541 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = BA7CC59F2DAB07D400D06541 /* GoogleGenerativeAI */; };
+		BA7CC6A72DAC5B2500D06541 /* GenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC6A62DAC5B2500D06541 /* GenAI-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BA7CC5702DAB06DE00D06541 /* SnapCycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapCycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7CC6A62DAC5B2500D06541 /* GenAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenAI-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BA7CC5722DAB06DE00D06541 /* SnapCycle */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SnapCycle;
-			sourceTree = "<group>";
-		};
-		BA7CC6702DAB9A5400D06541 /* .gitignore */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = .gitignore;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -42,9 +39,9 @@
 		BA7CC5672DAB06DE00D06541 = {
 			isa = PBXGroup;
 			children = (
-				BA7CC6702DAB9A5400D06541 /* .gitignore */,
 				BA7CC5722DAB06DE00D06541 /* SnapCycle */,
 				BA7CC5712DAB06DE00D06541 /* Products */,
+				BA7CC6A62DAC5B2500D06541 /* GenAI-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,7 +70,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				BA7CC5722DAB06DE00D06541 /* SnapCycle */,
-				BA7CC6702DAB9A5400D06541 /* .gitignore */,
 			);
 			name = SnapCycle;
 			packageProductDependencies = (
@@ -125,6 +121,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA7CC6A72DAC5B2500D06541 /* GenAI-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
