@@ -15,6 +15,8 @@ struct MainView: View {
     
     @StateObject var mainViewModel: MainViewModel
     @StateObject var genAIModel: GenAI
+    
+    let bgColor = AppColors.backgroundColor
 
     init() {
         let mainViewModel = MainViewModel()
@@ -23,15 +25,32 @@ struct MainView: View {
     }
 
     var body: some View {
-        VStack {
-            Text("SnapCycle")
-                .font(.system(size: 40, weight: .bold, design: .default))
-                .foregroundColor(Color(red: 0.2, green: 0.5, blue: 0.2))
+        ZStack{
             
-            PhotoSelectionView(mainViewModel: mainViewModel, genAIModel: genAIModel)
+            bgColor.ignoresSafeArea(edges: .all).opacity(1)
             
-            AIView(mainViewModel: mainViewModel, genAIModel: genAIModel)
+            Color(.white).opacity(0.9).edgesIgnoringSafeArea(.all).padding(10).cornerRadius(50)
             
+ 
+            VStack {
+                HStack{
+                    Text("SnapCycle")
+                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .foregroundColor(bgColor)
+                        .padding()
+                    
+                    Image(systemName: "arrow.3.trianglepath")
+                        .font(.system(size: 30, weight: .bold, design: .default))
+                        .foregroundColor(bgColor)
+                }
+                
+                PhotoSelectionView(mainViewModel: mainViewModel, genAIModel: genAIModel)
+                
+                AIView(mainViewModel: mainViewModel, genAIModel: genAIModel)
+                
+                SaplingPreviewView(genAIModel: genAIModel, mainViewModel: mainViewModel)
+                
+            }
         }
     }
 

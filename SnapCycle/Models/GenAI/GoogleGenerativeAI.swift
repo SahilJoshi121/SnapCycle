@@ -21,7 +21,7 @@ class GenAI: ObservableObject {
             self.model = GenerativeModel(name: "gemini-1.5-flash", apiKey: APIKey.default)
     }
     
-    func generateRespose(input: [UIImage]) {
+    func generateRespose(input: [UIImage], type: String) {
         isLoading = true
         response = ""
         
@@ -35,7 +35,15 @@ class GenAI: ObservableObject {
                     }
                 }
                 
-                parts.append(.text("What's in these images?"))
+                switch type {
+                    case "initialAnalysis":
+                        parts.append(.text("What item is this? Is it recyclable? Where can it be recycled? Respond concisely."))
+                    case "recycleProof":
+                        parts.append(.text("Has this item been recycled correctly? Respond in a single integer point value from 1-5, based on how difficult succesful recycling of this item would be. For example, a cardboard box would be twoIf this has not been responded correctly, respond with zero. "))
+                    default:
+                        print("fatal error")
+                }
+            
                 
                 let modelContent = try await ModelContent(parts: parts)
                 

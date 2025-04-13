@@ -12,52 +12,61 @@ struct PhotoSelectionView: View {
     
     @ObservedObject var mainViewModel: MainViewModel
     @ObservedObject var genAIModel: GenAI
+    let bgColor = AppColors.backgroundColor
+    let image = UIImage(named: "CardboardBox")
     
     var body: some View {
         VStack {
             HStack {
                 Button {
                     mainViewModel.selection.removeAll()
+                    genAIModel.response = ""
                     mainViewModel.selectedPhotos = true
                 } label: {
                     Image(systemName: "x.circle.fill")
-                        .foregroundColor(Color.green)
+                        .foregroundColor(bgColor)
                         .fontWeight(.bold)
                         .padding(.all, 10.0)
-                        .border(Color.green, width: 3)
+                        .border(bgColor, width: 3)
                         .cornerRadius(8)
                 }
 
                 
                 PhotosPicker(selection: $mainViewModel.selection, matching: .images) {
                         Text("Select Photos")
-                            .foregroundColor(Color.green)
+                            .foregroundColor(bgColor)
                             .fontWeight(.bold)
                             .padding(.all, 10.0)
-                            .border(Color.green, width: 3)
+                            .border(bgColor, width: 3)
                             .cornerRadius(8)
                 }
                 
                 Button {
                     mainViewModel.isAnalyzing = true
-                    genAIModel.generateRespose(input: mainViewModel.selectedImages)
+                    genAIModel.generateRespose(input: mainViewModel.selectedImages, type: "initialAnalysis")
                 } label: {
                     Text("Analyze")
-                        .foregroundColor(Color.green)
+                        .foregroundColor(bgColor)
                         .fontWeight(.bold)
                         .padding(.all, 10.0)
-                        .border(Color.green, width: 3)
+                        .border(bgColor, width: 3)
+                        .cornerRadius(8)
+                }
+                
+                Button {
+                    mainViewModel.selectedImages.append(image!)
+                    mainViewModel.selectedPhotos = true
+                } label: {
+                    Image(systemName: "plus.diamond.fill")
+                        .foregroundColor(bgColor)
+                        .fontWeight(.bold)
+                        .padding(.all, 10.0)
+                        .border(bgColor, width: 3)
                         .cornerRadius(8)
                 }
 
             }
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.green.opacity(0.1))
-                .padding(20)
-                .frame(minHeight: 175, maxHeight: .infinity)
-                .overlay(
-                    PhotoGridView(mainViewModel: mainViewModel)
-                )
+            PhotoGridView(mainViewModel: mainViewModel)
                 
             
         }.onChange(of: mainViewModel.selection) {_, newValue in

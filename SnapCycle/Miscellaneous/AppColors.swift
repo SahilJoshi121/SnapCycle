@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct AppColors: View {
+    
+    static let backgroundColor: Color = Color(Color(red: 0.2, green: 0.5, blue: 0.2))
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Color(Color(red: 0.2, green: 0.5, blue: 0.2))
     }
 }
 

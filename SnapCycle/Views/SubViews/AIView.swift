@@ -15,11 +15,11 @@ struct AIView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.green.opacity(0.1))
-            .padding(20)
-            .frame(minHeight: 175, maxHeight: .infinity)
+            .frame(minHeight: 175, maxHeight: 300)
             .overlay(
                 AITextView(mainViewModel: mainViewModel, genAIModel: genAIModel)
             )
+            .padding(30)
     }
 }
 
@@ -29,7 +29,7 @@ struct AIView: View {
     let genAIModel = GenAI(mainViewModel: mainViewModel)
     
     Button {
-        genAIModel.generateRespose(input: mainViewModel.selectedImages)
+        genAIModel.generateRespose(input: mainViewModel.selectedImages, type: "initialAnalysis")
     } label: {
         Text("generate")
     }
