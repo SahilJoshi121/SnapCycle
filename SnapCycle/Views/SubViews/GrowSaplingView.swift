@@ -97,7 +97,7 @@ struct GrowSaplingView: View {
                             .border(bgColor, width: 3)
                             .cornerRadius(8)
                         
-                        Text("\(genAIModel.response)")
+                        
                     }
 
                     if genAIModel.isLoading {

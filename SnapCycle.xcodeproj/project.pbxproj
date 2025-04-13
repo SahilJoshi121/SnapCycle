@@ -20,6 +20,11 @@
 			path = SnapCycle;
 			sourceTree = "<group>";
 		};
+		BA7CC6702DAB9A5400D06541 /* .gitignore */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = .gitignore;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +42,7 @@
 		BA7CC5672DAB06DE00D06541 = {
 			isa = PBXGroup;
 			children = (
+				BA7CC6702DAB9A5400D06541 /* .gitignore */,
 				BA7CC5722DAB06DE00D06541 /* SnapCycle */,
 				BA7CC5712DAB06DE00D06541 /* Products */,
 			);
@@ -67,6 +73,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				BA7CC5722DAB06DE00D06541 /* SnapCycle */,
+				BA7CC6702DAB9A5400D06541 /* .gitignore */,
 			);
 			name = SnapCycle;
 			packageProductDependencies = (
