@@ -13,6 +13,7 @@ class GenAI: ObservableObject {
     @ObservedObject var mainViewModel: MainViewModel
     @Published var isLoading: Bool = false
     @Published var response = ""
+    @Published var responseReady: Bool = false
     
     let model: GenerativeModel
     
@@ -24,6 +25,7 @@ class GenAI: ObservableObject {
     func generateRespose(input: [UIImage], type: String) {
         isLoading = true
         response = ""
+        responseReady = false
         
         Task {
             do {
@@ -53,6 +55,7 @@ class GenAI: ObservableObject {
                 
                 let result = try await model.generateContent(modelContentArray)
                 isLoading = false
+                responseReady = true
                 response = result.text ?? "ERROR"
             } catch {
                 response = "Something went wrong\n\(error.localizedDescription)"

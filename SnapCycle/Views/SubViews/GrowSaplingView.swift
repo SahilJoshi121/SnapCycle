@@ -7,6 +7,7 @@
 
 import SwiftUI
 import _PhotosUI_SwiftUI
+import ConfettiSwiftUI
 
 struct GrowSaplingView: View {
     
@@ -18,8 +19,10 @@ struct GrowSaplingView: View {
     let bgColor = AppColors.backgroundColor
     @State var showingAlert = false
     
+    @State private var trigger: Int = 0
+    
     var body: some View {
-        ZStack{
+        ZStack {
             bgColor.ignoresSafeArea(edges: .all).opacity(1)
             
             Color(.white).opacity(0.9).edgesIgnoringSafeArea(.all).padding(10).cornerRadius(50)
@@ -38,6 +41,7 @@ struct GrowSaplingView: View {
                     .frame(width: 100, height: 200)
                     .cornerRadius(20)
                     .padding(20)
+                    .confettiCannon(trigger: $trigger, colors: [.green, bgColor], radius: 300.0)
                 
                 Text("Your sapling needs to grow by \(10 - saplingViewModel.currentSapling.progress) points in order to progress to the next stage!")
                     .multilineTextAlignment(.center)
@@ -73,22 +77,6 @@ struct GrowSaplingView: View {
                     Button {
                         genAIModel.generateRespose(input: mainViewModel.selectedImages, type: "recycleProof")
                         
-                        if genAIModel.response != "" {
-                            if let intResponse = Int(genAIModel.response) {
-                                if intResponse != 0 {
-                                    saplingViewModel.currentSapling.progress += 1
-                                } else {
-                                    showingAlert.toggle()
-                                }
-                                
-                                if saplingViewModel.currentSapling.progress == 10 {
-                                    saplingViewModel.currentSapling.progress = 0
-                                    saplingViewModel.currentSapling.status = "Stage 2"
-                                    saplingViewModel.currentSapling.image = "BasicTreeStage2"
-                                }
-                            }
-                        }
-
                     } label: {
                         Text("Submit")
                             .foregroundColor(bgColor)
@@ -96,8 +84,24 @@ struct GrowSaplingView: View {
                             .padding(.all, 10.0)
                             .border(bgColor, width: 3)
                             .cornerRadius(8)
-                        
-                        
+      
+                    }.onChange(of: genAIModel.responseReady) { _,  isReady in
+                        if genAIModel.response != "" {
+                            if let intResponse = Int(genAIModel.response) {
+                                if intResponse != 0 {
+                                    saplingViewModel.currentSapling.progress += Int(genAIModel.response)!
+                                    trigger += 1
+                                } else {
+                                    showingAlert.toggle()
+                                }
+                                
+                                if saplingViewModel.currentSapling.progress >= 10 {
+                                        saplingViewModel.currentSapling.progress = 0
+                                        saplingViewModel.currentSapling.status = "Stage 2"
+                                        saplingViewModel.currentSapling.image = "BasicTreeStage2"
+                                }
+                            }
+                        }
                     }
 
                     if genAIModel.isLoading {
