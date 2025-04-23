@@ -12,7 +12,6 @@ struct SaplingView: View {
     @ObservedObject var saplingViewModel: SaplingViewModel
     @ObservedObject var mainViewModel: MainViewModel
     let bgColor = AppColors.backgroundColor
-    @State var sheetPresented: Bool = false
     @State var newName = ""
     
     
@@ -37,7 +36,7 @@ struct SaplingView: View {
                     
                     VStack{
                         Button {
-                            sheetPresented.toggle()
+                            saplingViewModel.growViewShown.toggle()
                         } label: {
                             Text("GROW")
                                 .font(.system(size: 20, weight: .bold, design: .default))
@@ -79,7 +78,7 @@ struct SaplingView: View {
                 }.foregroundColor(bgColor)
 
             }
-        }.sheet(isPresented: $sheetPresented) {
+        }.sheet(isPresented: $saplingViewModel.growViewShown) {
             GrowSaplingView(genAIModel: genAIModel, saplingViewModel: saplingViewModel, mainViewModel: mainViewModel)
         }
     }

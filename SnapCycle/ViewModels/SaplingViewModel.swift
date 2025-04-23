@@ -12,4 +12,6 @@ class SaplingViewModel: ObservableObject {
     @Published var currentSapling = Sapling(type: "basic", image: "BasicTreeSeedling")
     @Published var saplingCount = 0
     @Published var saplings = [Sapling]()
+    
+    @Published var growViewShown: Bool = false
 }
