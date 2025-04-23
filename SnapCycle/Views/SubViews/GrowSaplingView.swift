@@ -38,7 +38,7 @@ struct GrowSaplingView: View {
                 
                 Image(saplingViewModel.currentSapling.image)
                     .resizable()
-                    .frame(width: 100, height: 200)
+                    .frame(width: 125, height: 200)
                     .cornerRadius(20)
                     .padding(20)
                     .confettiCannon(trigger: $trigger, colors: [.green, bgColor], radius: 300.0)
@@ -52,10 +52,20 @@ struct GrowSaplingView: View {
                 
                 Spacer()
                 
+                PhotoGridView(mainViewModel: mainViewModel)
+                
                 HStack {
                     Button {
-                        mainViewModel.selectedImages.append(image!)
-                        mainViewModel.selectedPhotos = true
+                        mainViewModel.selectedImages.removeAll()
+                        
+                        if mainViewModel.selectedImages.contains(image!) {
+                            mainViewModel.selectedImages.removeAll { $0 == image! }
+                        } else {
+                            mainViewModel.selectedImages.append(image!)
+                            mainViewModel.selectedPhotos = true
+                        }
+                    
+                        
                     } label: {
                         Image(systemName: "plus.diamond.fill")
                             .foregroundColor(bgColor)
@@ -75,7 +85,9 @@ struct GrowSaplingView: View {
                     }
                     
                     Button {
-                        genAIModel.generateRespose(input: mainViewModel.selectedImages, type: "recycleProof")
+                        if !mainViewModel.selectedImages.isEmpty {
+                            genAIModel.generateRespose(input: mainViewModel.selectedImages, type: "recycleProof")
+                        }
                         
                     } label: {
                         Text("Submit")
@@ -99,8 +111,14 @@ struct GrowSaplingView: View {
                                         saplingViewModel.currentSapling.progress = 0
                                         saplingViewModel.currentSapling.status = "Stage 2"
                                         saplingViewModel.currentSapling.image = "BasicTreeStage2"
+                                    
+                                    waitFor(seconds: 0.5) {
+                                        saplingViewModel.growViewShown = false
+                                    }
                                 }
                             }
+                            genAIModel.response = ""
+                            genAIModel.responseReady = false
                         }
                     }
 
